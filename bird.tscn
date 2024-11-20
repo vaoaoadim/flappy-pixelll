@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0577a1lb4tkh"]
+
+[ext_resource type="Script" path="res://bird.gd" id="1_5s7xg"]
+[ext_resource type="Texture2D" uid="uid://du62rmwgvn0p0" path="res://assets/asst/7 Bird/Walk.png" id="1_vhef8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wiy6w"]
+radius = 14.2515
+height = 68.6845
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_353kd"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s0u8"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyfp5"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evbda"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77t21"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77edh"]
+atlas = ExtResource("1_vhef8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7xrh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_353kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s0u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyfp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evbda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77t21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77edh")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 9.0
+}]
+
+[node name="bird" type="CharacterBody2D"]
+script = ExtResource("1_5s7xg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(175, 188)
+rotation = 1.26345
+shape = SubResource("CapsuleShape2D_wiy6w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(172, 178)
+scale = Vector2(3.00391, 3.39062)
+sprite_frames = SubResource("SpriteFrames_u7xrh")
+animation = &"fly"
+autoplay = "fly"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
